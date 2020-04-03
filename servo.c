@@ -33,8 +33,8 @@ void servo_init(){
 
 void servo_move(int degrees){
     unsigned long value;
-    value = ((-1/180)*degrees +18)*1000;
-    value = value/62.5;
+    value = ((-1/180)*degrees +18)*1000; //equation obtained used to obtain match values
+    value = value/62.5; //convert final match values
     TIMER1_CTL_R &= 0x2FF; //disable the timer while new values are loaded
     TIMER1_TBPMR_R = (TIMER1_TBPMR_R & 0x00) | (value >> 16); //top eight bits are stored in prescaler
     TIMER1_TBMATCHR_R = (TIMER1_TBMATCHR_R & 0x0000) | value; //last 16 bits are stored
