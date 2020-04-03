@@ -23,7 +23,7 @@ int main(void)
         timer_waitMillis(300);//wait for a moment
         servo_move(90); //move the servo to angle 90
 
-    /*int x = 1;
+    /*int x = 0;
     servo_move(90);
     while(1){
         int w = get_angle();

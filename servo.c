@@ -31,10 +31,9 @@ void servo_init(){
     TIMER1_CTL_R |= 0x100;//enable the timer
 }
 
-void servo_move(int degrees){
+void servo_move(float degrees){
     unsigned long value;
-    value = ((-1/180)*degrees +19)*1000000; //equation obtained used to obtain match values
-    value = value/62.5; //convert final match values
+    value = (int)(-156.66*degrees+311000); //obtain match value
     TIMER1_CTL_R &= 0x2FF; //disable the timer while new values are loaded
     TIMER1_TBPMR_R = (TIMER1_TBPMR_R & 0x00) | (value >> 16); //top eight bits are stored in prescaler
     TIMER1_TBMATCHR_R = (TIMER1_TBMATCHR_R & 0x0000) | value; //last 16 bits are stored
@@ -44,7 +43,7 @@ void servo_move(int degrees){
 int get_angle(void){
     unsigned long value;
     value = (TIMER1_TBPMR_R << 16) | TIMER1_TBMATCHR_R; //get curent value stored in registers
-    value = (((value * 62.5)/1000)-18)*-180; //convert to degrees
+    value = -(value-311000)/156.666; //convert to degrees
     return value;
 }
 
