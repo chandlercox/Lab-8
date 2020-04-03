@@ -12,7 +12,7 @@
 
 void servo_init(){
     SYSCTL_RCGCGPIO_R |=0x02; //enable clock to port B
-    while((SYSCTL_RCGCGPIO_R & 0x02) == 0){}; //wait for port B to be ready
+    while((SYSCTL_PRGPIO_R & 0x02) == 0){}; //wait for port B to be ready
     SYSCTL_RCGCTIMER_R |= 0x02; //enable clock to Timer 1
     while((SYSCTL_PRTIMER_R & 0x02) == 0){}; //wait for Timer 1 to be ready
 
@@ -33,7 +33,7 @@ void servo_init(){
 
 void servo_move(int degrees){
     unsigned long value;
-    value = ((-1/180)*degrees +18)*1000; //equation obtained used to obtain match values
+    value = ((-1/180)*degrees +19)*1000000; //equation obtained used to obtain match values
     value = value/62.5; //convert final match values
     TIMER1_CTL_R &= 0x2FF; //disable the timer while new values are loaded
     TIMER1_TBPMR_R = (TIMER1_TBPMR_R & 0x00) | (value >> 16); //top eight bits are stored in prescaler
