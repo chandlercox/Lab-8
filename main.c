@@ -5,56 +5,74 @@
  */
 #include <inc/tm4c123gh6pm.h>
 #include <timer.h>
-#include <ping.h>
 #include <lcd.h>
-
+#include <servo.h>
 int main(void)
 {
     timer_init(); //setup the timer
     lcd_init(); //setup the lcd screen
-    ping_init(); //setup the ping sensor timer
+    servo_init();// initalize servo
+    button_init(); //initalize button
 
-    //Part 1
-    /*while(1){
-    ping_trigger(); //should trigger the green LED on the sonar sensor
-    timer_waitMillis(500);
+   /* int x=90;
+    while (x<180){//sweep the servo
+        sero_move(x); //move the servo to a position
+        x++; //increment angular position
     }*/
 
-
-    // Part 2
-    /*while(1){
-        long clock_cycles;
-        ping_trigger();
-        //enableTimer();
-        while (update_flag == 0){};
-        while (update_flag == 1){};
-        if (update_flag == 2){ //second flag received means data is ready
-        clock_cycles = ping_getClockCycles();
-        lcd_printf("Clock Cycles %lu", time_diff);
+    int x = 1;
+    servo_move(90);
+    while(1){
+        int y = button_getButton();
+        if (y == 3){
+            x++;
         }
-        timer_waitMillis(200);
-    }*/
-
-
-
-    //Part 3
-    while (1){
-        long clock_cycles;
-        float distance;
-        ping_trigger();
-        while(update_flag ==0){}; //wait for rising edge
-        while(update_flag ==1){}; //wait for falling edge
-        if(update_flag == 2){ //falling edge has occured
-            clock_cycles = ping_getClockCycles(); //get number of clock cycles
-            distance = ping_getDistance(); //get distance in centimeters
-            lcd_printf("Distance: %lf \n", distance);
+        if (x % 2 != 0){ //counter clockwise
+            lcd_printf("Current angle: %d\n Counter Clockwise", get_angle);
+            if (y == 1){
+                if ((get_angle +1) >= 180){
+                        servo_move(180);
+                    }
+            else{
+                servo_move(get_angle +1);
+            }
+            }
+            if (y == 2){
+                if ((get_angle +5) >= 180){
+                    servo_move(180);
+                }
+                else {
+                    servo_move(get_angle +5);
+                }
+            }
+            if (y == 4){
+                servo_move(5);
+            }
         }
-        //lcd_printf("Clock Cycles: %lu \n", clock_cycles);
-
-        //lcd_printf("Time: %lf", time_diff);
-        //lcd_printf("Overflow: %d"); //figure this part out
-        timer_waitMillis(200);
+        if (x % 2 == 0){ //clockwise
+            lcd_printf("Current angle: %d\n Clockwise", get_angle);
+            if (y==1){
+                if ((get_angle -1) <= 0){
+                            servo_move(0);
+                        }
+                else{
+                    servo_move(get_angle - 1);
+                }
+            }
+            if (y == 2){
+                if ((get_angle -5) <= 0){
+                            servo_move(0);
+                        }
+                else{
+                    servo_move(get_angle - 5);
+                }
+            }
+            if (y == 4){
+                servo_move(175);
+            }
+        }
     }
+
 
 
 }

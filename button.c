@@ -48,7 +48,6 @@ void button_init() {
   while ((SYSCTL_PRGPIO_R & 0x10) == 0){};
     // 2) Set the buttons as inputs, do not modify other PORTE wires
     GPIO_PORTE_DIR_R &= 0xF0;
-    GPIO_PORTE_DIR_R |= 0x01;
     // 3) Enable digital functionality for button inputs,
     //    do not modify other PORTE enables
     GPIO_PORTE_DEN_R |= 0x0F;
@@ -66,7 +65,6 @@ void button_init() {
  */
 uint8_t button_getButton() {
 
-
   if(!(GPIO_PORTE_DATA_R & 0b00001000)){
     return 4;
   }
@@ -76,17 +74,11 @@ uint8_t button_getButton() {
   else if(!(GPIO_PORTE_DATA_R & 0b00000010)){
     return 2;
   }
- // else if(!(GPIO_PORTE_DATA_R & 0b00000001)){
-  // return 1;
- // }
+ else if(!(GPIO_PORTE_DATA_R & 0b00000001)){
+   return 1;
+  }
   else{
     return 0;
   }
 }
 
-void turnLED() {
-
-
-
-
-}
