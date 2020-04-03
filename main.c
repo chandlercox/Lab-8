@@ -15,13 +15,15 @@ int main(void)
     servo_init();// initalize servo
     button_init(); //initalize button
 
-   /* int x=90;
-    while (x<180){//sweep the servo
-        sero_move(x); //move the servo to a position
-        x++; //increment angular position
-    }*/
+        servo_move(90); //move the servo to angle 90
+        timer_waitMillis(300);//wait for a moment
+        servo_move(30); //move the servo to angle 30
+        timer_waitMillis(300);//wait for a moment
+        servo_move(150); //move the servo to angle 150
+        timer_waitMillis(300);//wait for a moment
+        servo_move(90); //move the servo to angle 90
 
-    int x = 1;
+    /*int x = 1;
     servo_move(90);
     while(1){
         int w = get_angle();
@@ -73,8 +75,8 @@ int main(void)
                 servo_move(175); //move to angle 175
             }
         }
-    }
-
+    }*/
 
 
 }
+
