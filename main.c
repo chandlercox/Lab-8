@@ -38,7 +38,8 @@ int main(void)
                         servo_move(180); //move to the max value
                     }
             else{
-                servo_move(w +1); //add one to the angle
+		w += 1;
+                servo_move(w); //add one to the angle
             }
             }
             if (y == 2){ //if button two is pushed
@@ -46,7 +47,8 @@ int main(void)
                     servo_move(180); // move to max value
                 }
                 else {
-                    servo_move(w +5); // add five to the angle
+		w += 5;
+                    servo_move(w); // add five to the angle
                 }
             }
             if (y == 4){ //if button four is pushed
@@ -60,7 +62,8 @@ int main(void)
                             servo_move(0);  //move to minimum value
                         }
                 else{
-                    servo_move(w - 1); //decrease the angle by one
+		    w -= 1;
+                    servo_move(w); //decrease the angle by one
                 }
             }
             if (y == 2){ //if button two is pushed
@@ -68,7 +71,8 @@ int main(void)
                             servo_move(0);// move to minimum value
                         }
                 else{
-                    servo_move(w - 5); //decrease the angle by five
+		   w -= 5;
+                    servo_move(w); //decrease the angle by five
                 }
             }
             if (y == 4){ //if button four is pushed
