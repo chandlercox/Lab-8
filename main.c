@@ -95,7 +95,7 @@ int main(void)
                 servo_move(90); //move to 90 degrees
             }
         if (x % 2 != 0){ //if x is odd rotate counter clock wise
-            lcd_printf("Current angle: %d\n Counter Clockwise", w); //print angle and direction
+            lcd_printf("Counter Clockwise"); //print direction
             if (y == 1){ //if button one is pushed
 		for(i = 0; i<=180; i++){
 			w = get_angle();
@@ -119,7 +119,7 @@ int main(void)
             }
         }
         if (x % 2 == 0){ //if x is an even number
-            lcd_printf("Current angle: %d\n Clockwise", w); //display angle and direction
+            lcd_printf("Clockwise"); //display direction
             if (y == 1){ //if button one is pushed
 		for(i = 180; i>=0; i--){
 			w = get_angle();
