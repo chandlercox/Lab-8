@@ -81,6 +81,49 @@ int main(void)
         }
     }*/
 
+//for part 2
+	 /*int x = 0;
+    servo_move(90);
+    while(1){
+	int i = 0;
+        int w = get_angle();
+        int y = button_getButton(); //check button status
+        if (y == 3){ //if button three is pushed..
+            x++; //increment x
+        }
+            if (y == 4){ //if button four is pushed
+                servo_move(90); //move to 90 degrees
+            }
+        if (x % 2 != 0){ //if x is odd rotate counter clock wise
+            lcd_printf("Current angle: %d\n Counter Clockwise", w); //print angle and direction
+            if (y == 1){ //if button one is pushed
+		for(i = 0; i<180; i++){
+			servo_move(i); // move servo 180 degrees incrimenting by 1
+		}
+            }
+            if (y == 2){ //if button two is pushed
+		for(i = 0; i<180; i+5){
+			servo_move(i); // move servo 180 degrees incrimenting by 5
+		}
+
+            }
+        }
+        if (x % 2 == 0){ //if x is an even number
+            lcd_printf("Current angle: %d\n Clockwise", w); //display angle and direction
+            if (y == 1){ //if button one is pushed
+		for(i = 180; i>0; i--){
+			servo_move(i); // move servo 180 degrees decrementing by 1
+		}
+            }
+            if (y == 2){ //if button two is pushed
+		for(i = 180; i>0; i-5){
+			servo_move(i); // move servo 180 degrees decrementing by 5
+		}
+
+            }
+        }
+    }*/
+
 
 }
 
