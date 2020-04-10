@@ -39,6 +39,7 @@ void servo_move(float degrees){
     TIMER1_TBPMR_R = (TIMER1_TBPMR_R & 0x00) | (value >> 16); //top eight bits are stored in prescaler
     TIMER1_TBMATCHR_R = (TIMER1_TBMATCHR_R & 0x0000) | value; //last 16 bits are stored
     TIMER1_CTL_R |= 0x100;//enable the timer
+    timer_waitMillis(30);
 }
 
 int get_angle(void){

@@ -23,6 +23,7 @@ void part1 (void){
     servo_move(90); //move the servo to angle 90
 }
 
+
 void part2 (void){
     int x = 0;
     while (1){
@@ -91,11 +92,16 @@ void part3(void){
     int i = 0;
         int w = get_angle();
         uint8_t y = button_getButton(); //check button status
+        while (!y){
+            y = button_getButton();
+        }
         if (y == 3){ //if button three is pushed..
             x++; //increment x
+            timer_waitMillis(100);
         }
         if (y == 4){ //if button four is pushed
             servo_move(90); //move to 90 degrees
+            timer_waitMillis(100);
         }
         if (x % 2 != 0){ //if x is odd rotate counter clock wise
             lcd_printf("Counter Clockwise"); //print direction
@@ -107,6 +113,7 @@ void part3(void){
                     } else{
                         servo_move(180);
                     }
+                    timer_waitMillis(100);
                 }
             }
             if (y == 2){ //if button two is pushed
@@ -118,7 +125,7 @@ void part3(void){
                         servo_move(180);
                     }
                 }
-
+                timer_waitMillis(100);
             }
         }
         if (x % 2 == 0){ //if x is an even number
@@ -132,6 +139,7 @@ void part3(void){
                         servo_move(0);
                     }
                 }
+                timer_waitMillis(100);
             }
             if (y == 2){ //if button two is pushed
                 for(i = 180; i>=0; i=i-5){
@@ -144,7 +152,9 @@ void part3(void){
                 }
 
             }
+            timer_waitMillis(100);
         }
+        timer_waitMillis(100);
     }
 }
 
