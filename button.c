@@ -65,6 +65,7 @@ void button_init() {
  */
 uint8_t button_getButton() {
 
+
   if(!(GPIO_PORTE_DATA_R & 0b00001000)){
     return 4;
   }
@@ -81,4 +82,5 @@ uint8_t button_getButton() {
     return 0;
   }
 }
+
 

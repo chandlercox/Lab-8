@@ -9,6 +9,7 @@
 #include <inc/tm4c123gh6pm.h>
 #include <timer.h>
 #include <driverlib/interrupt.h>
+#include "lab_parts.h"
 
 void servo_init(){
     SYSCTL_RCGCGPIO_R |=0x02; //enable clock to port B
@@ -33,7 +34,7 @@ void servo_init(){
 
 void servo_move(float degrees){
     unsigned long value;
-    value = (int)(-156.66*degrees+311000); //obtain match value
+    value = (int)(-156.666*degrees+311000); //obtain match value
     TIMER1_CTL_R &= 0x2FF; //disable the timer while new values are loaded
     TIMER1_TBPMR_R = (TIMER1_TBPMR_R & 0x00) | (value >> 16); //top eight bits are stored in prescaler
     TIMER1_TBMATCHR_R = (TIMER1_TBMATCHR_R & 0x0000) | value; //last 16 bits are stored
@@ -45,5 +46,10 @@ int get_angle(void){
     value = (TIMER1_TBPMR_R << 16) | TIMER1_TBMATCHR_R; //get curent value stored in registers
     value = -(value-311000)/156.666; //convert to degrees
     return value;
+}
+
+void move_formula(int degrees){
+    float value = m*degrees + b;
+    servo_move(value);
 }
 
