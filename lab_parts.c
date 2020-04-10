@@ -14,13 +14,13 @@ volatile float m;
 volatile int b;
 
 void part1 (void){
-            servo_move(90); //move the servo to angle 90
-            timer_waitMillis(300);//wait for a moment
-            servo_move(30); //move the servo to angle 30
-            timer_waitMillis(300);//wait for a moment
-            servo_move(150); //move the servo to angle 150
-            timer_waitMillis(300);//wait for a moment
-            servo_move(90); //move the servo to angle 90
+    servo_move(90); //move the servo to angle 90
+    timer_waitMillis(300);//wait for a moment
+    servo_move(30); //move the servo to angle 30
+    timer_waitMillis(300);//wait for a moment
+    servo_move(150); //move the servo to angle 150
+    timer_waitMillis(300);//wait for a moment
+    servo_move(90); //move the servo to angle 90
 }
 
 void part2 (void){
@@ -33,15 +33,17 @@ void part2 (void){
     }
     if (x % 2 != 0){ //if x is odd rotate counter clock wise
         lcd_printf("Current angle: %d\n Counter Clockwise", w); //print angle and direction
+
         if (y == 1){ //if button one is pushed
             if ((w + 1) >= 180){ //if incrementing the angle will be larger than 180
-                    servo_move(180); //move to the max value
+                servo_move(180); //move to the max value
             }
-        else{
-            w += 1;
-            servo_move(w); //add one to the angle
+            else{
+                w += 1;
+                servo_move(w); //add one to the angle
+            }
         }
-        }
+
         if (y == 2){ //if button two is pushed
             if ((w +5) >= 180){ //if incrementing the angle will be larger than 180
                 servo_move(180); // move to max value
@@ -51,6 +53,7 @@ void part2 (void){
                 servo_move(w); // add five to the angle
             }
         }
+
         if (y == 4){ //if button four is pushed
             servo_move(5); //move to 5 degrees
         }
