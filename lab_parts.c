@@ -179,15 +179,19 @@ void part4(){
             if (y == 1){ //if button one is pushed
                 w += 1;
                 servo_move(w); //add one to the angle
+                timer_waitMillis(100);
             }
             if (y == 2){ //if button one is pushed
                 w -= 1;
                 servo_move(w); //subtracts one to the angle
+                timer_waitMillis(100);
             }
             if(y == 4){
                 values[i] = w;
+                timer_waitMillis(100);
                 break;
             }
+            timer_waitMillis(100);
          }
     }
 

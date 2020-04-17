@@ -16,7 +16,8 @@ int main(void)
     servo_init();// initalize servo
     button_init(); //initalize button
 
-    part3();
+    part4();
+    part4_check();
 
 }
 
